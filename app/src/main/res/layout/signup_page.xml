@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+                android:id="@+id/facebook_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/facebook_round_shape"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Facebook"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/snapchat_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="SnapChat"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/instagram_round_shape"
+                    style="@style/social_media_layout_style"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Instagram"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/twitter_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Twitter"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/linkedin_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="LinkedIn"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/googleplus_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="GooglePlus"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/slack_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Slack"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/skype_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Skype"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    style="@style/social_media_layout_style"
+                    android:background="@drawable/mobmail_round_shape"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="Mobile/Email"
+                        style="@style/social_media_text_style"
+                        android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
