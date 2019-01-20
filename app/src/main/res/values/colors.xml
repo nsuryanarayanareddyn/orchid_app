@@ -13,6 +13,11 @@
     <color name="linkedin_color">#0077B5</color>
     <color name="gplus_color">#DD4B39</color>
     <color name="slack_color">#49C39E</color>
-    <color name="skype_color">#00AFF0</color>
+    <color name="skype_color">#DAFC0568</color>
     <color name="mobileemail_color">@color/colorPrimaryDark</color>
+
+    <color name="pink">#DAFC0568</color>
+    <color name="blue">#DA3A70CC</color>
+    <color name="black">#000000</color>
+
 </resources>

@@ -4,5 +4,14 @@
 
     <string name="bloom_together">Bloom Together</string>
     <string name="orchidrus"><u>OrchidRUs</u></string>
+    <string name="enter_email">Enter Email</string>
+    <string name="password">Password</string>
+    <string name="login_signup">LOGIN/SIGNUP</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="or_continue_with">Or Continue With</string>
+    <string name="login">LOGIN</string>
+    <string name="enter_otp_sent_to_your_email">Enter OTP sent to your Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="send_otp">SEND OTP</string>
 
 </resources>

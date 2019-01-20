@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity android:name=".LoginPage"/>
+        <activity android:name=".ForgotPassword"/>
         <activity android:name=".IntroPage"/>
         <activity android:name=".SignUpPage"/>
         <activity android:name=".MainActivity">

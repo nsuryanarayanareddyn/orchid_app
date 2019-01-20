@@ -15,7 +15,7 @@ class SplashScreen : AppCompatActivity() {
 
         Handler().postDelayed({
             kotlin.run {
-                startActivity(Intent(this, IntroPage::class.java))
+                startActivity(Intent(this, LoginPage::class.java))
                 finish()
             }
         }, splashDelay)
