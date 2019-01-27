@@ -1,25 +1,20 @@
 package com.invages.orchidrus
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
-import android.widget.Button
 import com.facebook.*
-import com.facebook.Profile.getCurrentProfile
 import com.facebook.login.LoginResult
-import com.facebook.appevents.internal.ActivityLifecycleTracker.startTracking
 import com.facebook.ProfileTracker
 import com.facebook.AccessToken
 import com.facebook.AccessTokenTracker
 import com.facebook.CallbackManager
 import com.facebook.FacebookSdk
 import com.facebook.FacebookException
-import android.widget.Toast
-import com.facebook.Profile.getCurrentProfile
 import com.facebook.FacebookCallback
 import com.facebook.login.widget.LoginButton
+import com.invages.orchidrus.screens.HomeScreen
 
 
 class MainActivity : AppCompatActivity() {
@@ -80,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun nextActivity(profile: Profile?) {
 
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, HomeScreen::class.java))
     }
 
     private var callback = object : FacebookCallback<LoginResult> {

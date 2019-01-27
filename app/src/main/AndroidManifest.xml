@@ -21,8 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LoginPage"/>
-        <activity android:name=".ForgotPassword"/>
+        <activity android:name=".screens.LoginScreen"/>
+        <activity android:name=".screens.ForgotPassword"/>
         <activity android:name=".IntroPage"/>
         <activity android:name=".SignUpPage"/>
         <activity android:name=".MainActivity">
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HomeActivity"/>
+        <activity android:name=".screens.HomeScreen"/>
 
         <meta-data
                 android:name="com.facebook.sdk.ApplicationId"
