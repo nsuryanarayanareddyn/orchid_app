@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary">
+
+        </androidx.appcompat.widget.Toolbar>-->
+
+        <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <!--
+                        <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+                                android:layout_width="match_parent"
+                                android:layout_gravity="bottom"
+                                android:layout_height="wrap_content">
+
+                        </com.aurelhubert.ahbottomnavigation.AHBottomNavigation>-->
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                    app:menu="@menu/nav_items"
+                    android:id="@+id/navigation"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/windowBackground"
+                    app:itemBackground="@android:color/darker_gray"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:itemIconTint="@android:color/white"
+                    app:itemTextColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        </FrameLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

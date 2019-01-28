@@ -48,6 +48,8 @@ class LoginScreen : AppCompatActivity() {
                 Toast.makeText(this, "Please Enter mail id", Toast.LENGTH_SHORT).show()
             } else if (pw == "") {
                 Toast.makeText(this, "Please Enter password", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Invalid username/password", Toast.LENGTH_SHORT).show()
             }
         }
 

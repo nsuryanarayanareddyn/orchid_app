@@ -13,5 +13,14 @@
     <string name="enter_otp_sent_to_your_email">Enter OTP sent to your Email</string>
     <string name="enter_password">Enter Password</string>
     <string name="send_otp">SEND OTP</string>
+    <string name="title_shop">Shop</string>
+    <string name="title_gifts">Gifts</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_profile">Profile</string>
+    <string name="add">Add</string>
+    <string name="home">Home</string>
+    <string name="invite">Invite</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 
 </resources>
