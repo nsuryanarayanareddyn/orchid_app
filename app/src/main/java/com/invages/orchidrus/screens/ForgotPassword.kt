@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.invages.orchidrus.R
 import kotlinx.android.synthetic.main.forgot_password.*
-import kotlinx.android.synthetic.main.login_page.*
+import kotlinx.android.synthetic.main.login_screen.*
 
 class ForgotPassword : AppCompatActivity() {
 
