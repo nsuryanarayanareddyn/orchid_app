@@ -9,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.invages.orchidrus.R
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
-import com.invages.orchidrus.retrofit.model.LoginUser
+import com.invages.orchidrus.retrofit.model.LoginDetail
 import kotlinx.android.synthetic.main.login_screen.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Field
 
 class LoginScreen : AppCompatActivity() {
 
@@ -58,17 +57,27 @@ class LoginScreen : AppCompatActivity() {
             mail = "abc@gmail.com"
             pw = "abc@123"
 
-            val call: Call<LoginUser> = apiInterface.login(mail, pw)
-            call.enqueue(object : Callback<LoginUser> {
+            val call: Call<LoginDetail> = apiInterface.login(mail, pw)
+            call.enqueue(object : Callback<LoginDetail> {
 
-                override fun onResponse(call: Call<LoginUser>?, response: Response<LoginUser>?) {
-                    val resource = response?.body()
+                override fun onResponse(call: Call<LoginDetail>?, response: Response<LoginDetail>?) {
+
+                    var res: LoginDetail? = response?.body()
                     Log.i(TAG, "onResponse $call")
-                    Log.i(TAG, "onResponse $response")
-                    Log.i(TAG, "onResponse ${resource.toString()}")
+                    Log.i(TAG, "onResponse ${res.toString()}")
+                    Log.i(TAG, "onResponse ${res?.status}")
+                    Log.i(TAG, "onResponse ${res?.message}")
+                    Log.i(TAG, "onResponse ${res?.status_code}")
+                    Log.i(TAG, "onResponse ${res?.token}")
+
+                    if (res?.status == "Success") {
+                        Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                    }
+
                 }
 
-                override fun onFailure(call: Call<LoginUser>?, t: Throwable?) {
+                override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
                     Log.i(TAG, "onFailure ${t?.localizedMessage}")
                 }
             })

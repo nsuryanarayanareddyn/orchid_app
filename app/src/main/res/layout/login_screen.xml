@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:hint="@string/password"
+                        android:hint="@string/status"
                         android:id="@+id/etPassword"
                         android:maxLines="1"
                         android:inputType="textPassword"
