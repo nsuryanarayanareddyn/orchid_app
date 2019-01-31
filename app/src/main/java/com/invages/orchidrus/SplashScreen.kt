@@ -8,7 +8,7 @@ import com.invages.orchidrus.screens.LoginScreen
 
 class SplashScreen : AppCompatActivity() {
 
-    private val splashDelay = 2000L;
+    private val splashDelay = 2L;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

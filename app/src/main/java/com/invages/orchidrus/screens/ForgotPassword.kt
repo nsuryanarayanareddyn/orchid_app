@@ -1,5 +1,6 @@
 package com.invages.orchidrus.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -58,7 +59,7 @@ class ForgotPassword : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(this@ForgotPassword, "Enter valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -93,14 +94,22 @@ class ForgotPassword : AppCompatActivity() {
 
         btnLoginFP.setOnClickListener {
 
-            val otp: Int = etOtp.text.toString().toInt();
+            val otpStr = etOtp.text.toString()
             val email = etPasswordFPage.text.toString();
 
+            var otpInt = 0
 
-            /*if (otp.isEmpty()) {
+            if (otpStr.isEmpty()) {
                 Toast.makeText(this@ForgotPassword, "Enter OTP", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }*/
+            } else {
+                otpInt = otpStr.toInt();
+            }
+
+            if (otpInt == 0 || otpStr.length < 6 || otpStr.length > 6) {
+                Toast.makeText(this@ForgotPassword, "Enter valid OTP", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
 
             if (email.isEmpty()) {
@@ -109,12 +118,12 @@ class ForgotPassword : AppCompatActivity() {
             }
 
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            /*if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 Toast.makeText(this@ForgotPassword, "Enter valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            }*/
 
-            val call: Call<LoginDetail> = apiInterface.verifyOTP(otp, email)
+            val call: Call<LoginDetail> = apiInterface.verifyOTP(otpInt, email)
 
             call.enqueue(object : Callback<LoginDetail> {
 
@@ -130,10 +139,15 @@ class ForgotPassword : AppCompatActivity() {
 
                     Toast.makeText(this@ForgotPassword, res?.message, Toast.LENGTH_SHORT).show()
 
+                    if (res?.status == "Success") {
+                        Toast.makeText(this@ForgotPassword, res.message, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@ForgotPassword, HomeScreen::class.java))
+                    }
+
                 }
 
                 override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
-                    Log.i(TAG, "onFailure $t")
+
                     Log.i(TAG, "onFailure ${t?.message}")
                 }
 

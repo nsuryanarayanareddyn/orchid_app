@@ -33,10 +33,10 @@ class HomeScreen : AppCompatActivity() {
 
         apiInterface = ApiClient.getClient().create(ApiInterface::class.java)
 
-        retrofitCall()
+        //retrofitCall()
 
 
-        val navigation = this.findViewById<BottomNavigationView>(com.invages.orchidrus.R.id.navigation)
+        val navigation = this.findViewById<BottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
@@ -45,27 +45,32 @@ class HomeScreen : AppCompatActivity() {
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
             val fragment: Fragment
             when (item.itemId) {
-                com.invages.orchidrus.R.id.navigation_shop -> {
+                R.id.home -> {
                     // toolbar.setTitle("Shop")
                     fragment = HomeFragment()
                     loadFragment(fragment)
                     return true
                 }
-                com.invages.orchidrus.R.id.navigation_gifts -> {
+                R.id.invite_people -> {
                     //toolbar.setTitle("My Gifts")
                     fragment = InviteFragment()
                     loadFragment(fragment)
                     return true
                 }
-                com.invages.orchidrus.R.id.navigation_cart -> {
+                R.id.navigation_plus -> {
 //                    toolbar.setTitle("Cart")
                     fragment = AddEventFragment()    
                     loadFragment(fragment)
 
                     return true
                 }
-                com.invages.orchidrus.R.id.navigation_profile -> {
+                R.id.profile -> {
 //                    toolbar.setTitle("Profile")
+                    fragment = ProfileFragment()
+                    loadFragment(fragment)
+                    return true
+                }
+                R.id.logout -> {
                     fragment = ProfileFragment()
                     loadFragment(fragment)
                     return true

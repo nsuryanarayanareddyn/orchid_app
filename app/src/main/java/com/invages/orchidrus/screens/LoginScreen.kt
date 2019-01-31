@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.invages.orchidrus.R
@@ -51,48 +52,51 @@ class LoginScreen : AppCompatActivity() {
 
         btLogin.setOnClickListener {
 
-            var mail = etEmail.text.toString().trim()
-            var pw = etPassword.text.toString().trim()
+            val mail = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
-            mail = "abc@gmail.com"
-            pw = "abc@123"
+            if (mail == "" && password == "") {
+                Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show()
+            } else if (mail == "") {
+                Toast.makeText(this, "Please enter mail id", Toast.LENGTH_SHORT).show()
+            } else if (password == "") {
+                Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show()
+            } else {
 
-            val call: Call<LoginDetail> = apiInterface.login(mail, pw)
-            call.enqueue(object : Callback<LoginDetail> {
+                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()){
+                    Toast.makeText(this, "Enter valid email", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                val call: Call<LoginDetail> = apiInterface.login(mail, password)
+                call.enqueue(object : Callback<LoginDetail> {
 
-                override fun onResponse(call: Call<LoginDetail>?, response: Response<LoginDetail>?) {
+                    override fun onResponse(call: Call<LoginDetail>?, response: Response<LoginDetail>?) {
 
-                    var res: LoginDetail? = response?.body()
-                    Log.i(TAG, "onResponse $call")
-                    Log.i(TAG, "onResponse ${res.toString()}")
-                    Log.i(TAG, "onResponse ${res?.status}")
-                    Log.i(TAG, "onResponse ${res?.message}")
-                    Log.i(TAG, "onResponse ${res?.status_code}")
-                    Log.i(TAG, "onResponse ${res?.token}")
+                        val res: LoginDetail? = response?.body()
 
-                    if (res?.status == "Success") {
-                        Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                        Log.i(TAG, "onResponse ${res?.status}")
+                        Log.i(TAG, "onResponse ${res?.message}")
+                        Log.i(TAG, "onResponse ${res?.status_code}")
+                        Log.i(TAG, "onResponse ${res?.token}")
+
+                        if (res?.status == "Success") {
+                            Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                        }
+
                     }
 
-                }
+                    override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
+                        Log.i(TAG, "onFailure ${t?.localizedMessage}")
+                    }
 
-                override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
-                    Log.i(TAG, "onFailure ${t?.localizedMessage}")
-                }
-            })
+                })
+
+            }
 
 
-            /*if (mail == "test" && pw == "123") {
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, HomeScreen::class.java))
-            } else if (mail == "") {
-                Toast.makeText(this, "Please Enter mail id", Toast.LENGTH_SHORT).show()
-            } else if (pw == "") {
-                Toast.makeText(this, "Please Enter password", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Invalid username/password", Toast.LENGTH_SHORT).show()
-            }*/
+
+
         }
 
         forgot_password.setOnClickListener {
