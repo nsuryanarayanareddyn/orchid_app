@@ -64,7 +64,7 @@ class LoginScreen : AppCompatActivity() {
             } else {
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()){
-                    Toast.makeText(this, "Enter valid email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Enter valid email id", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 val call: Call<LoginDetail> = apiInterface.login(mail, password)

@@ -1,5 +1,6 @@
 package com.invages.orchidrus.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -47,8 +48,9 @@ class HomeScreen : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> {
                     // toolbar.setTitle("Shop")
-                    fragment = HomeFragment()
-                    loadFragment(fragment)
+//                    fragment = HomeFragment()
+//                    loadFragment(fragment)
+                    startActivity(Intent(this@HomeScreen, CreateEvent::class.java))
                     return true
                 }
                 R.id.invite_people -> {

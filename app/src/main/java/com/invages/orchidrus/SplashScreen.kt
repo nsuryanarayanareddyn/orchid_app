@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.invages.orchidrus.screens.HomeScreen
 import com.invages.orchidrus.screens.LoginScreen
+import com.invages.orchidrus.util.Utils
 
 class SplashScreen : AppCompatActivity() {
 
@@ -16,7 +18,14 @@ class SplashScreen : AppCompatActivity() {
 
         Handler().postDelayed({
             kotlin.run {
-                startActivity(Intent(this, LoginScreen::class.java))
+
+                val token: String? = Utils.getPreferenceValue(this, "token")
+
+                if (token == "")
+                    startActivity(Intent(this, LoginScreen::class.java))
+                else
+                    startActivity(Intent(this, HomeScreen::class.java))
+
                 finish()
             }
         }, splashDelay)
