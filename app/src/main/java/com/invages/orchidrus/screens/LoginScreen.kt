@@ -11,6 +11,7 @@ import com.invages.orchidrus.R
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
 import com.invages.orchidrus.retrofit.model.LoginDetail
+import com.invages.orchidrus.util.Utils
 import kotlinx.android.synthetic.main.login_screen.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,7 +64,7 @@ class LoginScreen : AppCompatActivity() {
                 Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show()
             } else {
 
-                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()){
+                if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                     Toast.makeText(this, "Enter valid email id", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
@@ -79,9 +80,12 @@ class LoginScreen : AppCompatActivity() {
                         Log.i(TAG, "onResponse ${res?.status_code}")
                         Log.i(TAG, "onResponse ${res?.token}")
 
+                        Utils.setPreferenceValue(this@LoginScreen, "token", "" + res?.token)
+
                         if (res?.status == "Success") {
                             Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                            finish()
                         }
 
                     }
@@ -93,8 +97,6 @@ class LoginScreen : AppCompatActivity() {
                 })
 
             }
-
-
 
 
         }

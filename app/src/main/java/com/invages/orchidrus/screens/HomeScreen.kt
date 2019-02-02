@@ -20,6 +20,7 @@ import com.invages.orchidrus.fragment.AddEventFragment
 import com.invages.orchidrus.fragment.HomeFragment
 import com.invages.orchidrus.fragment.InviteFragment
 import com.invages.orchidrus.fragment.ProfileFragment
+import com.invages.orchidrus.util.Utils
 
 
 class HomeScreen : AppCompatActivity() {
@@ -73,8 +74,10 @@ class HomeScreen : AppCompatActivity() {
                     return true
                 }
                 R.id.logout -> {
-                    fragment = ProfileFragment()
-                    loadFragment(fragment)
+//                    fragment = ProfileFragment()
+//                    loadFragment(fragment)
+                    Utils.setPreferenceValue(this@HomeScreen,"token", "")
+                    finish()
                     return true
                 }
             }
