@@ -3,24 +3,22 @@ package com.invages.orchidrus.screens
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.invages.orchidrus.R
-import com.invages.orchidrus.retrofit.ApiClient
-import com.invages.orchidrus.retrofit.ApiInterface
-import com.invages.orchidrus.retrofit.model.MultipleResource
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import androidx.annotation.NonNull
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.invages.orchidrus.fragment.AddEventFragment
 import com.invages.orchidrus.fragment.HomeFragment
 import com.invages.orchidrus.fragment.InviteFragment
 import com.invages.orchidrus.fragment.ProfileFragment
+import com.invages.orchidrus.retrofit.ApiClient
+import com.invages.orchidrus.retrofit.ApiInterface
+import com.invages.orchidrus.retrofit.model.MultipleResource
 import com.invages.orchidrus.util.Utils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeScreen : AppCompatActivity() {
@@ -32,6 +30,8 @@ class HomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.invages.orchidrus.R.layout.home_activity)
+
+        supportActionBar?.hide()
 
         apiInterface = ApiClient.getClient().create(ApiInterface::class.java)
 
@@ -49,9 +49,8 @@ class HomeScreen : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> {
                     // toolbar.setTitle("Shop")
-//                    fragment = HomeFragment()
-//                    loadFragment(fragment)
-                    startActivity(Intent(this@HomeScreen, CreateEvent::class.java))
+                    fragment = HomeFragment()
+                    loadFragment(fragment)
                     return true
                 }
                 R.id.invite_people -> {
@@ -62,9 +61,10 @@ class HomeScreen : AppCompatActivity() {
                 }
                 R.id.navigation_plus -> {
 //                    toolbar.setTitle("Cart")
-                    fragment = AddEventFragment()    
-                    loadFragment(fragment)
-
+//                    fragment = AddEventFragment()
+//                    loadFragment(fragment)
+                    startActivity(Intent(this@HomeScreen, CreateEvent::class.java))
+                    overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
                     return true
                 }
                 R.id.profile -> {
@@ -76,7 +76,7 @@ class HomeScreen : AppCompatActivity() {
                 R.id.logout -> {
 //                    fragment = ProfileFragment()
 //                    loadFragment(fragment)
-                    Utils.setPreferenceValue(this@HomeScreen,"token", "")
+                    Utils.setPreferenceValue(this@HomeScreen, "token", "")
                     finish()
                     return true
                 }
@@ -87,9 +87,8 @@ class HomeScreen : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment) {
-
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
+        transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null);
         transaction.commit()
     }

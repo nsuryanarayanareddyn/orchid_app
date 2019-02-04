@@ -6,12 +6,14 @@ public class LoginDetail {
     String status;
     String message;
     String token;
+    String userid;
 
-    public LoginDetail(String status_code, String status, String message, String token) {
+    public LoginDetail(String status_code, String status, String message, String token,String userid) {
         this.status_code = status_code;
         this.status = status;
         this.message = message;
         this.token = token;
+        this.userid = userid;
     }
 
     public String getStatus_code() {
@@ -44,5 +46,13 @@ public class LoginDetail {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }

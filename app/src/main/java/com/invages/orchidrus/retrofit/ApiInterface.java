@@ -1,9 +1,6 @@
 package com.invages.orchidrus.retrofit;
 
-import com.invages.orchidrus.retrofit.model.LoginDetail;
-import com.invages.orchidrus.retrofit.model.MultipleResource;
-import com.invages.orchidrus.retrofit.model.User;
-import com.invages.orchidrus.retrofit.model.UserList;
+import com.invages.orchidrus.retrofit.model.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -27,6 +24,7 @@ public interface ApiInterface {
     String otp_key = "otp";
     String email_key = "email";
     String password_key = "password";
+    String token_key = "token";
 
     /*
      * App Services
@@ -42,5 +40,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("orchid/orchid_v0.0.1/public/api/verifyOTP")
     Call<LoginDetail> verifyOTP(@Field(otp_key) int otp, @Field(email_key) String email);
+
+    @FormUrlEncoded
+    @POST("orchid/orchid_v0.0.1/public/api/listEventType")
+    Call<ListEvents> getlistEventType(@Field(token_key) String token);
 
 }
