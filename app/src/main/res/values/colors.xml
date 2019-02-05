@@ -19,5 +19,7 @@
     <color name="pink">#DAFC0568</color>
     <color name="blue">#DA3A70CC</color>
     <color name="black">#000000</color>
+    <color name="header_color">#0C1E34</color>
+    <color name="app_light_gray">#E4E8EB</color>
 
 </resources>
