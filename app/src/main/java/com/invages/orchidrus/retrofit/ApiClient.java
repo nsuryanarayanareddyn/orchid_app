@@ -40,7 +40,7 @@ public class ApiClient {
 
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(interceptor)
-//                    .addNetworkInterceptor(networkInterceptor)
+                    .addNetworkInterceptor(networkInterceptor)
                     .build();
 
             retrofit = new Retrofit.Builder()

@@ -10,6 +10,7 @@ import android.preference.PreferenceManager
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Utils {
@@ -38,6 +39,9 @@ class Utils {
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, day)
 
+                val sdf = SimpleDateFormat("HH:mm:ss")
+                val formatedDate = sdf.format(myCalendar.time)
+
                 var strDay = (day).toString()
                 if (strDay.length == 1) {
                     strDay = "0$strDay"
@@ -49,7 +53,7 @@ class Utils {
 
                 // repodatebtn.setText(strselectedDay+"/"+strselectedMonth+"/"+year);
 
-                tvName.text = String.format("%s-%s-%s", year, strMonth, strDay)
+                tvName.text = String.format("%s-%s-%s $formatedDate", year, strMonth, strDay)
                 //tvName.text = String.format("%s/%s", strMonth, year)
 
             }

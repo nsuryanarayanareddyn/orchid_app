@@ -50,12 +50,12 @@
                 android:layout_height="wrap_content"/>
 
         <EditText
+                android:id="@+id/etEventName"
                 android:layout_width="match_parent"
                 android:text="Aditya Birthday"
                 android:hint="Name of event"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"/>
-
 
         <TextView
                 android:text="Event Occasion "
@@ -64,12 +64,12 @@
                 android:layout_height="wrap_content"/>
 
         <EditText
+                android:id="@+id/etEventOccasionType"
                 android:layout_width="match_parent"
                 android:text="Aditya Birthday"
                 android:hint="Name of event"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"/>
-
 
         <TextView
                 android:text="Write something on event"
@@ -78,6 +78,7 @@
                 android:layout_height="wrap_content"/>
 
         <EditText
+                android:id="@+id/etEventDesc"
                 android:layout_width="match_parent"
                 android:hint="Write event description"
                 android:textStyle="bold"
@@ -101,7 +102,7 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
-                        android:id="@+id/eventDate"
+                        android:id="@+id/etEventStartDate"
                         android:layout_below="@id/eventDateLabel"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"
@@ -110,7 +111,7 @@
 
                 <ImageView
                         android:id="@+id/dateCalendar"
-                        android:layout_toRightOf="@id/eventDate"
+                        android:layout_toRightOf="@id/etEventStartDate"
                         android:layout_below="@id/eventDateLabel"
                         android:layout_width="wrap_content"
                         android:src="@drawable/ic_date_calendar_black_24dp"
@@ -132,17 +133,17 @@
                         android:layout_height="wrap_content"/>
 
                 <EditText
-                        android:id="@+id/responseDate"
+                        android:id="@+id/etResponseDate"
                         android:layout_below="@id/responseDateLabel"
                         android:layout_width="wrap_content"
                         android:textStyle="bold"
-                        android:layout_toLeftOf="@id/responseDate"
+                        android:layout_toLeftOf="@id/etResponseDate"
                         android:hint="Select Date"
                         android:layout_height="wrap_content"/>
 
                 <ImageView
                         android:id="@+id/dateCalendarTwo"
-                        android:layout_toRightOf="@id/responseDate"
+                        android:layout_toRightOf="@id/etResponseDate"
                         android:layout_width="wrap_content"
                         android:layout_below="@id/responseDateLabel"
                         android:src="@drawable/ic_date_calendar_black_24dp"
