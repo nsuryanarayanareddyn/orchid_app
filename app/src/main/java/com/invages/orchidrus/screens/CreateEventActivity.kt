@@ -16,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
 
-class CreateEvent : AppCompatActivity() {
+class CreateEventActivity : AppCompatActivity() {
 
 
     var strEventName = ""
@@ -46,6 +46,7 @@ class CreateEvent : AppCompatActivity() {
         leftArrow.setOnClickListener { saveEvent() }
         dateCalendar.setOnClickListener { Utils.setDateYYYYMMDD(this, etEventStartDate) }
         dateCalendarTwo.setOnClickListener { Utils.setDateYYYYMMDD(this, etResponseDate) }
+
     }
 
     private fun saveEvent() {

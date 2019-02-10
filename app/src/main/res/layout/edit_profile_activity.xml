@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:padding="20dp"
+            android:background="@color/header_color"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/btCloseEditProfile"
+                android:src="@drawable/ic_close_white_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_toRightOf="@id/btCloseEditProfile"
+                android:text="Edit primary details"
+                android:layout_marginLeft="15dp"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/btSubmitEditProfile"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_done_white_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <TextView
+            android:text="Name"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/etNameEditProfile"
+            android:text="Raghav Mehera"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_marginLeft="12dp"
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:layout_marginLeft="10dp"
+            android:hint="example@gmail.com"
+            android:id="@+id/etEmailProfileEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_marginLeft="12dp"
+            android:text="Phone number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:layout_marginLeft="10dp"
+            android:hint="9895898763"
+            android:id="@+id/etPhoneProfileEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_marginLeft="12dp"
+            android:text="Date of birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:layout_marginLeft="10dp"
+                android:id="@+id/etDobProfileEdit"
+                android:layout_width="match_parent"
+                android:hint="12 Dec 1997"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/dobEditProfile"
+                android:src="@drawable/ic_date_calendar_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

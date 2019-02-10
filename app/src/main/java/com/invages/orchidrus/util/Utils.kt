@@ -10,6 +10,7 @@ import android.preference.PreferenceManager
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,6 +19,11 @@ class Utils {
     companion object {
 
         var SERVER_BASE_URL = "http://dameeko.com/orchid/orchid_v0.0.1/public"
+
+        var PLEASE_ENTER_NAME = "Please enter Name"
+        var PLEASE_ENTER_EMAIL = "Please enter Email"
+        var PLEASE_ENTER_PHONE = "Please enter Phone number"
+        var PLEASE_ENTER_DOB = "Please enter Date of Birth"
 
         fun setPreferenceValue(context: Context, key: String, value: String) {
             val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -85,6 +91,11 @@ class Utils {
             datePickerDialog.setCancelable(false)
             datePickerDialog.show()
         }
+
+        fun alertMessage(a: Activity?, msg: String) {
+            Toast.makeText(a, msg, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 }

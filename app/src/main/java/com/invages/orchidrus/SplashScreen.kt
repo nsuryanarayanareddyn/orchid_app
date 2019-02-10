@@ -19,6 +19,9 @@ class SplashScreen : AppCompatActivity() {
         Handler().postDelayed({
             kotlin.run {
 
+                //      fortesting
+                Utils.setPreferenceValue(this, "token", "kjjhjhg")
+
                 val token: String? = Utils.getPreferenceValue(this, "token")
 
                 if (token == "")
