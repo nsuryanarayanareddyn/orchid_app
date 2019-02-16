@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/app_light_gray"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <RelativeLayout
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/birthday_pic"
+                    android:background="@drawable/round_birthday_pic"
+                    android:src="@drawable/download"
+                    android:layout_width="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="60dp"/>
+
+            <LinearLayout
+                    android:layout_toRightOf="@id/birthday_pic"
+                    android:layout_toEndOf="@+id/birthday_pic"
+                    android:layout_toLeftOf="@id/middle_line"
+                    android:layout_toStartOf="@id/middle_line"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/name"
+                        android:textStyle="bold"
+                        android:text="Aditya"
+                        android:textSize="14dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/message"
+                        android:textSize="12dp"
+                        android:text="2/20 peaple are attending birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/middle_line"
+                    android:layout_centerVertical="true"
+                    android:text="|"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toLeftOf="@id/eventDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/eventDate"
+                    android:layout_alignParentRight="true"
+                    android:text="JAN 23 2019"
+                    android:textColor="@color/black"
+                    android:gravity="right"
+                    android:layout_centerVertical="true"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tvEventType"
+                    android:text="Birthday"
+                    android:paddingLeft="3dp"
+                    android:textSize="12dp"
+                    android:background="@drawable/border_line_no_padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:text="Invite People"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/invitePeopleArrow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:id="@+id/invitePeopleArrow1"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_arrow_pointing_to_right"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.invages.orchidrus.R
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
 import com.invages.orchidrus.retrofit.model.ListEvents
-import com.invages.orchidrus.retrofit.model.LoginDetail
 import com.invages.orchidrus.util.Utils
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i(TAG, "onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,6 +48,22 @@ class HomeFragment : Fragment() {
             }
         })
 
+        val viewPager: ViewPager = view.findViewById(R.id.viewpagerHome)
+        val tabLayout: TabLayout = view.findViewById(R.id.result_tabs)
+
+        setUpViewPager(viewPager)
+        tabLayout.setupWithViewPager(viewPager)
+
+
+
+
         return view
+    }
+
+    fun setUpViewPager(viewPager: ViewPager) {
+        val eventsAdapter = EventFragmentsAdapter(childFragmentManager)
+        eventsAdapter.addFragment(UpComingEventsFragment(), "Upcoming Events")
+        eventsAdapter.addFragment(PastEventsFragment(), "Past Events")
+        viewPager.adapter = eventsAdapter
     }
 }

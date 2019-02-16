@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -27,13 +29,18 @@ class HomeScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.invages.orchidrus.R.layout.home_activity)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+        setContentView(R.layout.home_activity)
 
         supportActionBar?.hide()
 
         apiInterface = ApiClient.getClient().create(ApiInterface::class.java)
 
-        //retrofitCall()
+//retrofitCall()
 
 
         val navigation = this.findViewById<BottomNavigationView>(R.id.navigation)
@@ -95,9 +102,9 @@ class HomeScreen : AppCompatActivity() {
 
     fun retrofitCall() {
 
-        //URL--> https://reqres.in/api/unknown
-        //Response --> {"page":1,"per_page":3,"total":12,"total_pages":4,"data":[{"id":1,"name":"cerulean","year":2000,"color":"#98B2D1","pantone_value":"15-4020"},{"id":2,"name":"fuchsia rose","year":2001,"color":"#C74375","pantone_value":"17-2031"},{"id":3,"name":"true red","year":2002,"color":"#BF1932","pantone_value":"19-1664"}]}
-        //Call Retrofit APIS
+//URL--> https://reqres.in/api/unknown
+//Response --> {"page":1,"per_page":3,"total":12,"total_pages":4,"data":[{"id":1,"name":"cerulean","year":2000,"color":"#98B2D1","pantone_value":"15-4020"},{"id":2,"name":"fuchsia rose","year":2001,"color":"#C74375","pantone_value":"17-2031"},{"id":3,"name":"true red","year":2002,"color":"#BF1932","pantone_value":"19-1664"}]}
+//Call Retrofit APIS
         val callOne: Call<MultipleResource> = apiInterface.listResources
         callOne.enqueue(object : Callback<MultipleResource> {
 

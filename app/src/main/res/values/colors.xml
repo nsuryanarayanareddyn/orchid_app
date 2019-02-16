@@ -21,6 +21,7 @@
     <color name="black">#000000</color>
     <color name="header_color">#0C1E34</color>
     <color name="app_light_gray">#E4E8EB</color>
+    <color name="app_thick_gray">#999DA3</color>
     <color name="profile_background_color">#0B4665</color>
 
 </resources>

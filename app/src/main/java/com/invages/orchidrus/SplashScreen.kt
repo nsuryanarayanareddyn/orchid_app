@@ -20,13 +20,13 @@ class SplashScreen : AppCompatActivity() {
             kotlin.run {
 
                 //      fortesting
-                Utils.setPreferenceValue(this, "token", "kjjhjhg")
+                //Utils.setPreferenceValue(this, "token", "kjjhjhg")
 
                 val token: String? = Utils.getPreferenceValue(this, "token")
 
-                if (token == "")
-                    startActivity(Intent(this, LoginScreen::class.java))
-                else
+//                if (token == "" /*|| token == "null"*/)
+//                    startActivity(Intent(this, LoginScreen::class.java))
+//                else
                     startActivity(Intent(this, HomeScreen::class.java))
 
                 finish()
