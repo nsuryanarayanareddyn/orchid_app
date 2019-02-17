@@ -26,7 +26,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         public MyViewAdapter(View view) {
             super(view);
 
-            image = (ImageView) view.findViewById(R.id.image);
+            image = (ImageView) view.findViewById(R.id.cardImage);
             title = (TextView) view.findViewById(R.id.title);
         }
     }

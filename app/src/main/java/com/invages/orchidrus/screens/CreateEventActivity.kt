@@ -3,8 +3,16 @@ package com.invages.orchidrus.screens
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.invages.orchidrus.R
+import com.invages.orchidrus.adapter.CardsListAdapter
+import com.invages.orchidrus.adapter.EventsListAdapter
+import com.invages.orchidrus.model.CardItem
+import com.invages.orchidrus.model.PersonEvent
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
 import com.invages.orchidrus.retrofit.model.LoginDetail
@@ -47,6 +55,24 @@ class CreateEventActivity : AppCompatActivity() {
         dateCalendar.setOnClickListener { Utils.setDateYYYYMMDD(this, etEventStartDate) }
         dateCalendarTwo.setOnClickListener { Utils.setDateYYYYMMDD(this, etResponseDate) }
 
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewBirthdayCards)
+
+        val list = arrayListOf<CardItem>()
+
+        list.add(CardItem(R.drawable.happy_birthday_all_my_butt))
+        list.add(CardItem(R.drawable.original_penguins_personalised_anniversary_card))
+        list.add(CardItem(R.drawable.happy_birthday_all_my_butt))
+        list.add(CardItem(R.drawable.original_penguins_personalised_anniversary_card))
+        list.add(CardItem(R.drawable.original_penguins_personalised_anniversary_card))
+        list.add(CardItem(R.drawable.original_penguins_personalised_anniversary_card))
+        list.add(CardItem(R.drawable.original_penguins_personalised_anniversary_card))
+
+        val mAdapter = CardsListAdapter(list)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, true)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.adapter = mAdapter
+
     }
 
     private fun saveEvent() {
@@ -56,7 +82,7 @@ class CreateEventActivity : AppCompatActivity() {
         strEventDesc = etEventDesc.text.toString()
         strEventStartTime = etEventStartDate.text.toString()
         strEventResponseTime = etResponseDate.text.toString()
-        strCreatedBy = ""+Utils.getPreferenceValue(baseContext, "token")
+        strCreatedBy = "" + Utils.getPreferenceValue(baseContext, "token")
 
 
         val call = apiInterface.createEvent(
