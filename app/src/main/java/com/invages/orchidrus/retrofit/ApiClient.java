@@ -33,7 +33,7 @@ public class ApiClient {
 
                     Request.Builder builder = chain.request().newBuilder();
                     builder.header("Content-Type", "application/json");
-
+                    builder.header("Accept", "application/json");
                     return chain.proceed(builder.build());
                 }
             };

@@ -1,5 +1,6 @@
 package com.invages.orchidrus.retrofit
 
+import com.invages.orchidrus.model.LoginBody
 import com.invages.orchidrus.retrofit.model.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -22,9 +23,10 @@ interface ApiInterface {
     /*
      * App Services
      */
-    @FormUrlEncoded
+
+
     @POST("orchid/orchid_v0.0.1/public/api/login")
-    fun login(@Field(email_key) email: String, @Field(password_key) password: String): Call<LoginDetail>
+    fun login(@Body body: LoginBody): Call<LoginDetail>
 
     @FormUrlEncoded
     @POST("orchid/orchid_v0.0.1/public/api/sendOTP")

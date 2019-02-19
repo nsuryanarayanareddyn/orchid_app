@@ -82,7 +82,7 @@ class CreateEventActivity : AppCompatActivity() {
         strEventDesc = etEventDesc.text.toString()
         strEventStartTime = etEventStartDate.text.toString()
         strEventResponseTime = etResponseDate.text.toString()
-        strCreatedBy = "" + Utils.getPreferenceValue(baseContext, "token")
+        strCreatedBy = "" + Utils.getPreferenceValue(baseContext, "user_id")
 
 
         val call = apiInterface.createEvent(

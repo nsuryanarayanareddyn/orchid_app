@@ -8,11 +8,16 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.invages.orchidrus.R
+import com.invages.orchidrus.asynctask.WebAsyncTask
+import com.invages.orchidrus.asynctask.WebResponseListener
+import com.invages.orchidrus.model.LoginBody
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
 import com.invages.orchidrus.retrofit.model.LoginDetail
 import com.invages.orchidrus.util.Utils
+import com.invages.orchidrus.util.Utils.Companion.LOGIN_URL
 import kotlinx.android.synthetic.main.login_screen.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,33 +73,64 @@ class LoginScreen : AppCompatActivity() {
                     Toast.makeText(this, "Enter valid email id", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                val call: Call<LoginDetail> = apiInterface.login(mail, password)
-                call.enqueue(object : Callback<LoginDetail> {
+                /* val call: Call<LoginDetail> = apiInterface.login(LoginBody(mail, password))
+                 call.enqueue(object : Callback<LoginDetail> {
 
-                    override fun onResponse(call: Call<LoginDetail>?, response: Response<LoginDetail>?) {
+                     override fun onResponse(call: Call<LoginDetail>?, response: Response<LoginDetail>?) {
 
-                        val res: LoginDetail? = response?.body()
+                         val res: LoginDetail? = response?.body()
 
-                        Log.i(TAG, "onResponse ${res?.status}")
-                        Log.i(TAG, "onResponse ${res?.message}")
-                        Log.i(TAG, "onResponse ${res?.status_code}")
-                        Log.i(TAG, "onResponse ${res?.token}")
+                         Log.i(TAG, "onResponse ${res?.status}")
+                         Log.i(TAG, "onResponse ${res?.message}")
+                         Log.i(TAG, "onResponse ${res?.status_code}")
+                         Log.i(TAG, "onResponse ${res?.token}")
 
-                        Utils.setPreferenceValue(this@LoginScreen, "token", "" + res?.token)
+                         Utils.setPreferenceValue(this@LoginScreen, "token", "" + res?.token)
+                         Utils.setPreferenceValue(this@LoginScreen, "user_id", "" + res?.userid)
 
-                        if (res?.status == "Success") {
-                            Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
+                         if (res?.status == "Success") {
+                             Toast.makeText(this@LoginScreen, res.message, Toast.LENGTH_SHORT).show()
+                             startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
+                             finish()
+                         }
+
+                     }
+
+                     override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
+                         Log.i(TAG, "onFailure ${t?.localizedMessage}")
+                     }
+
+                 })
+ */
+
+                val jObj = JSONObject()
+                jObj.put("email", mail)
+                jObj.put("password", password)
+
+                WebAsyncTask(this, LOGIN_URL, jObj, object : WebResponseListener {
+
+                    override fun onResponse(str: String?) {
+
+                        Log.i(TAG, str)
+                        val jObj = JSONObject(str)
+
+                        if (jObj.getString("status") == "Success") {
+                            Utils.setPreferenceValue(this@LoginScreen, "token", "" + jObj.getString("token"))
+                            Utils.setPreferenceValue(this@LoginScreen, "user_id", "" + jObj.getString("user_id"))
+
+                            Toast.makeText(this@LoginScreen, jObj.getString("message"), Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@LoginScreen, HomeScreen::class.java))
                             finish()
+
                         }
 
+
                     }
 
-                    override fun onFailure(call: Call<LoginDetail>?, t: Throwable?) {
-                        Log.i(TAG, "onFailure ${t?.localizedMessage}")
-                    }
+                    override fun onError(error: String?) {
 
-                })
+                    }
+                }).execute()
 
             }
 

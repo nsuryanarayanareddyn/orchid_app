@@ -24,9 +24,9 @@ class SplashScreen : AppCompatActivity() {
 
                 val token: String? = Utils.getPreferenceValue(this, "token")
 
-//                if (token == "" /*|| token == "null"*/)
-//                    startActivity(Intent(this, LoginScreen::class.java))
-//                else
+                if (token == "" || token == "null")
+                    startActivity(Intent(this, LoginScreen::class.java))
+                else
                     startActivity(Intent(this, HomeScreen::class.java))
 
                 finish()
