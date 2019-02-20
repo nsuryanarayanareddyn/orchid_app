@@ -20,7 +20,8 @@ class Utils {
 
         var SERVER_BASE_URL = "http://dameeko.com/orchid/orchid_v0.0.1/public"
 
-        var LOGIN_URL = "$SERVER_BASE_URL/api/login"
+        var URL_LOGIN = "$SERVER_BASE_URL/api/login"
+        var URL_CREATE_EVENT = "$SERVER_BASE_URL/api/createEvents"
 
         var PLEASE_ENTER_NAME = "Please enter Name"
         var PLEASE_ENTER_EMAIL = "Please enter Email"

@@ -1,8 +1,10 @@
 package com.invages.orchidrus.asynctask;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -20,6 +22,7 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
     JSONObject jObj;
     private WebResponseListener webResponseListener;
 
+    ProgressDialog progressDialog;
 
     String TAG = getClass().getSimpleName();
 
@@ -34,6 +37,10 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
     }
 
     @Override
@@ -69,7 +76,7 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 StringBuffer sb = new StringBuffer("");
-                String line = "";
+                String line;
 
                 while ((line = in.readLine()) != null) {
                     sb.append(line);
@@ -95,11 +102,15 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         Log.i(TAG, "onPostExecute: " + s);
+        progressDialog.cancel();
         webResponseListener.onResponse(s);
     }
 
 
     public String getPostData(JSONObject params) throws Exception {
+
+        Log.i(TAG, "getPostData: "+params.toString());
+
         StringBuilder result = new StringBuilder();
         boolean first = true;
 

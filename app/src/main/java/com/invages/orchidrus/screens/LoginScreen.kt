@@ -10,17 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.invages.orchidrus.R
 import com.invages.orchidrus.asynctask.WebAsyncTask
 import com.invages.orchidrus.asynctask.WebResponseListener
-import com.invages.orchidrus.model.LoginBody
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
-import com.invages.orchidrus.retrofit.model.LoginDetail
 import com.invages.orchidrus.util.Utils
-import com.invages.orchidrus.util.Utils.Companion.LOGIN_URL
+import com.invages.orchidrus.util.Utils.Companion.URL_LOGIN
 import kotlinx.android.synthetic.main.login_screen.*
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginScreen : AppCompatActivity() {
 
@@ -107,7 +102,7 @@ class LoginScreen : AppCompatActivity() {
                 jObj.put("email", mail)
                 jObj.put("password", password)
 
-                WebAsyncTask(this, LOGIN_URL, jObj, object : WebResponseListener {
+                WebAsyncTask(this, URL_LOGIN, jObj, object : WebResponseListener {
 
                     override fun onResponse(str: String?) {
 

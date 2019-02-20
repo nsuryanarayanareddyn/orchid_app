@@ -1,5 +1,6 @@
 package com.invages.orchidrus.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
@@ -11,12 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.invages.orchidrus.R
 import com.invages.orchidrus.adapter.CardsListAdapter
 import com.invages.orchidrus.adapter.EventsListAdapter
+import com.invages.orchidrus.asynctask.WebAsyncTask
+import com.invages.orchidrus.asynctask.WebResponseListener
 import com.invages.orchidrus.model.CardItem
 import com.invages.orchidrus.model.PersonEvent
 import com.invages.orchidrus.retrofit.ApiClient
 import com.invages.orchidrus.retrofit.ApiInterface
 import com.invages.orchidrus.retrofit.model.LoginDetail
 import com.invages.orchidrus.util.Utils
+import com.invages.orchidrus.util.Utils.Companion.URL_CREATE_EVENT
 import kotlinx.android.synthetic.main.create_event.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -54,7 +58,7 @@ class CreateEventActivity : AppCompatActivity() {
         leftArrow.setOnClickListener { saveEvent() }
         dateCalendar.setOnClickListener { Utils.setDateYYYYMMDD(this, etEventStartDate) }
         dateCalendarTwo.setOnClickListener { Utils.setDateYYYYMMDD(this, etResponseDate) }
-
+        inviteFriendsLayout.setOnClickListener { startActivity(Intent(this, InviteFriendsScreen::class.java)) }
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewBirthdayCards)
 
@@ -84,8 +88,35 @@ class CreateEventActivity : AppCompatActivity() {
         strEventResponseTime = etResponseDate.text.toString()
         strCreatedBy = "" + Utils.getPreferenceValue(baseContext, "user_id")
 
+        var jObj = JSONObject();
+        jObj.put("event_name", strEventName)
+        jObj.put("event_description", strEventDesc)
+        jObj.put("event_type_id", strEventType)
+        jObj.put("event_start_time", strEventStartTime)
+        jObj.put("event_response_by_time", strEventResponseTime)
+        jObj.put("event_created_by", strCreatedBy)
 
-        val call = apiInterface.createEvent(
+        WebAsyncTask(this, URL_CREATE_EVENT, jObj, object : WebResponseListener {
+
+            override fun onResponse(str: String?) {
+
+                Log.i(TAG, "onResponse called $str")
+
+//                {"status_code":200,"status":"Success","message":"Event Created Successfully","event_id":46}
+                val jObj = JSONObject(str)
+
+                if(jObj.getString("status") == "Success")
+                    finish()
+
+
+            }
+
+            override fun onError(error: String?) {
+
+            }
+        }).execute()
+
+        /*val call = apiInterface.createEvent(
             strEventName,
             strEventDesc,
             strEventType,
@@ -107,7 +138,7 @@ class CreateEventActivity : AppCompatActivity() {
                 Log.i(TAG, "onFailure ")
             }
 
-        })
+        })*/
     }
 
     override fun onBackPressed() {
