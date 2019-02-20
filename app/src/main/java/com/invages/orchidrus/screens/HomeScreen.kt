@@ -45,6 +45,9 @@ class HomeScreen : AppCompatActivity() {
 
         val navigation = this.findViewById<BottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        val fragment = HomeFragment()
+        loadFragment(fragment)
     }
 
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {

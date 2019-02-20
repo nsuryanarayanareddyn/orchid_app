@@ -15,7 +15,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
-public class WebAsyncTask extends AsyncTask<String, String, String> {
+public class WebAsyncTask extends AsyncTask<String, String, JSONObject> {
 
     private Context context;
     String urlStr;
@@ -44,7 +44,7 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected JSONObject doInBackground(String... strings) {
 
         Log.i(TAG, "doInBackground " + urlStr);
         Log.i(TAG, "doInBackground " + jObj.toString());
@@ -86,7 +86,7 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
                 in.close();
 
                 Log.i(TAG, "" + sb.toString());
-                return sb.toString();
+                return new JSONObject(sb.toString());
 
             }
 
@@ -95,11 +95,11 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
             Log.i(TAG, "doInBackground: " + e.getMessage());
         }
 
-        return "";
+        return null;
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(JSONObject s) {
         super.onPostExecute(s);
         Log.i(TAG, "onPostExecute: " + s);
         progressDialog.cancel();
@@ -109,7 +109,7 @@ public class WebAsyncTask extends AsyncTask<String, String, String> {
 
     public String getPostData(JSONObject params) throws Exception {
 
-        Log.i(TAG, "getPostData: "+params.toString());
+        Log.i(TAG, "getPostData: " + params.toString());
 
         StringBuilder result = new StringBuilder();
         boolean first = true;

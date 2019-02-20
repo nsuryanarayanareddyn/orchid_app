@@ -52,5 +52,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.google.code.gson:gson:2.8.2'
-
+    implementation 'com.github.paolorotolo:appintro:4.0.0'
 }

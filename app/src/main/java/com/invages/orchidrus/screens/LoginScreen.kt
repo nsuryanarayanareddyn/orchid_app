@@ -104,12 +104,11 @@ class LoginScreen : AppCompatActivity() {
 
                 WebAsyncTask(this, URL_LOGIN, jObj, object : WebResponseListener {
 
-                    override fun onResponse(str: String?) {
+                    override fun onResponse(jObj: JSONObject?) {
 
-                        Log.i(TAG, str)
-                        val jObj = JSONObject(str)
+                        Log.i(TAG, "onResponse ${jObj.toString()}")
 
-                        if (jObj.getString("status") == "Success") {
+                        if (jObj?.getString("status") == "Success") {
                             Utils.setPreferenceValue(this@LoginScreen, "token", "" + jObj.getString("token"))
                             Utils.setPreferenceValue(this@LoginScreen, "user_id", "" + jObj.getString("user_id"))
 

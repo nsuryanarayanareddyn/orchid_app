@@ -98,14 +98,13 @@ class CreateEventActivity : AppCompatActivity() {
 
         WebAsyncTask(this, URL_CREATE_EVENT, jObj, object : WebResponseListener {
 
-            override fun onResponse(str: String?) {
+            override fun onResponse(jObj: JSONObject?) {
 
-                Log.i(TAG, "onResponse called $str")
+                Log.i(TAG, "onResponse called ${jObj.toString()}")
 
 //                {"status_code":200,"status":"Success","message":"Event Created Successfully","event_id":46}
-                val jObj = JSONObject(str)
 
-                if(jObj.getString("status") == "Success")
+                if(jObj?.getString("status") == "Success")
                     finish()
 
 

@@ -1,8 +1,10 @@
 package com.invages.orchidrus.asynctask;
 
+import org.json.JSONObject;
+
 public interface WebResponseListener {
 
-    void onResponse(String str);
+    void onResponse(JSONObject str);
     void onError(String error);
 
 }
