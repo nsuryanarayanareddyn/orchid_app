@@ -9,20 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.internal.Utility.arrayList
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.invages.orchidrus.R
 import com.invages.orchidrus.adapter.EventsListAdapter
 import com.invages.orchidrus.asynctask.WebAsyncTask
 import com.invages.orchidrus.asynctask.WebResponseListener
 import com.invages.orchidrus.model.PersonEvent
+import com.invages.orchidrus.model.PersonEvent2
 import com.invages.orchidrus.util.Utils
-import com.invages.orchidrus.util.Utils.Companion.URL_FUTURE_EVENTS
-import com.invages.orchidrus.util.Utils.Companion.URL_PAST_EVENTS
+import com.invages.orchidrus.util.Utils.Companion.URL_UPCOMING_EVENTS
 import org.json.JSONArray
 import org.json.JSONObject
 
+
 class UpComingEventsFragment : Fragment() {
 
-    var TAG = javaClass.simpleName;
+    var TAG = javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +49,14 @@ class UpComingEventsFragment : Fragment() {
         list.add(PersonEvent("Aditya Birthday", "2/10 people are attending birthday", "Birthday"))
         list.add(PersonEvent("Aditya Birthday", "2/10 people are attending birthday", "Birthday"))
 
+
+        val events = ArrayList<PersonEvent2>()
+
+
         val jObj = JSONObject();
         jObj.put("user_id", Utils.getPreferenceValue(this.context, "user_id"))
 
-        WebAsyncTask(context, URL_FUTURE_EVENTS, jObj, object : WebResponseListener {
+        WebAsyncTask(context, URL_UPCOMING_EVENTS, jObj, object : WebResponseListener {
             override fun onResponse(json: JSONObject?) {
                 //{"status_code":200,"status":"Success","message":"Event Type List Retrieved Successfully","output":[{"event_type_id":"1","event_type_name":"OTHER","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"2","event_type_name":"BIRTHDAY","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"3","event_type_name":"ANNIVERSARY","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"4","event_type_name":"CONDOLENSE","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"5","event_type_name":"WEDDING","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"6","event_type_name":"CONGRATULATIONS","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"7","event_type_name":"GET WELL","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"8","event_type_name":"THANK YOU","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"9","event_type_name":"RETIREMENT","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"10","event_type_name":"NEW BABY","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"11","event_type_name":"FAREWELL","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"},{"event_type_id":"12","event_type_name":"GRADUATION","event_type_description":"","created_at":"2019-01-15 06:41:31","updated_at":"2019-01-15 06:41:31"}]}
 
@@ -57,17 +65,43 @@ class UpComingEventsFragment : Fragment() {
                 if (json?.getString("status") == "Success") {
 
                     val array = JSONArray(json.getString("output"))
-//                    for(obj in array)
+
+
+                    for (i in 0..(array.length() - 1)) {
+                        val item = array.getJSONObject(i)
+                        val obj = PersonEvent2(
+                            item.getString("event_id"),
+                            item.getString("event_name"),
+                            item.getString("event_description"),
+                            item.getString("event_type_id"),
+                            item.getString("event_type_name"),
+                            item.getString("event_start_time"),
+                            item.getString("event_response_by_time"),
+                            item.getString("event_created_by_id"),
+                            item.getString("created_by_first_name"),
+                            item.getString("created_by_middle_name"),
+                            item.getString("created_by_last_name"),
+                            item.getString("created_at"),
+                            item.getString("updated_at")
+                        )
+                        events.add(obj)
+                    }
+
                 }
+
+                val mAdapter = EventsListAdapter(events)
+                recyclerView.layoutManager = LinearLayoutManager(context)
+                recyclerView.itemAnimator = DefaultItemAnimator()
+                recyclerView.adapter = mAdapter
 
             }
 
             override fun onError(error: String?) {
                 Log.i(TAG, "onError")
             }
-        }).execute();
+        }).execute()
 
-        val mAdapter = EventsListAdapter(list)
+        val mAdapter = EventsListAdapter(events)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = mAdapter

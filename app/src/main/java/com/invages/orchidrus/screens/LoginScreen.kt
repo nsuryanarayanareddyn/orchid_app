@@ -34,7 +34,16 @@ class LoginScreen : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+
+
         apiInterface = ApiClient.getClient().create(ApiInterface::class.java)
+
+        val token: String? = Utils.getPreferenceValue(this, "token")
+
+        if (token == "" || token == "null")
+            Log.i(TAG, "Proceed")
+        else
+            startActivity(Intent(this, HomeScreen::class.java))
 
 
         var count = 1

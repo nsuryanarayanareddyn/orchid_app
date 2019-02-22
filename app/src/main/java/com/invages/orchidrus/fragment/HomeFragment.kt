@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
         val token = Utils.getPreferenceValue(activity!!.baseContext, "token")
 
-        val cal = apiInterface.getListEventType(token + "")
+        /*val cal = apiInterface.getListEventType(token + "")
 
         cal.enqueue(object : Callback<ListEvents> {
 
@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
                 Log.i(TAG, "onFailure")
             }
         })
-
+*/
         val viewPager: ViewPager = view.findViewById(R.id.viewpagerHome)
         val tabLayout: TabLayout = view.findViewById(R.id.result_tabs)
 
